@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let product = this.value;
         if (!product) return;
 
-        fetch(`/product_price?product=${product}`)
+        fetch(`/product?product=${product}`)
             .then(response => response.json())
             .then(data => {
                 priceInput.value = data.price;
@@ -120,9 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
         })
-        .then(response => response.json())
-        .then(result => {
-            alert(result.message || "新增成功！");
+        .then(() => {
+            alert("新增成功！");
             close_input_table();
             location.assign("/");
         })

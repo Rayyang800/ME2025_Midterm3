@@ -18,7 +18,7 @@ class TestSalesDB(unittest.TestCase):
         # 在單元測試中我們通常會繞過裝飾器直接測邏輯，或是 Mock BaseDB。
         # 這裡示範直接傳入 self.cur 的情境
         
-        results = self.db.get_product_names_by_category('主食')
+        results = self.db.get_product_names_by_category(cur, '主食')
         products = [r[0] for r in results]
         self.assertIn('咖哩飯', products)
         self.assertIn('蛋包飯', products)
