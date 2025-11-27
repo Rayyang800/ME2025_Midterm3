@@ -1,5 +1,39 @@
-{% extends 'index.html' %}
+<form id="add-form">
+    <label>客戶名稱：</label>
+    <input type="text" id="customer"><br>
 
-{% block form %}
+    <label>日期：</label>
+    <input type="date" id="date"><br>
 
-{% endblock%}
+    <label>商品種類：</label>
+    <select id="category">
+        <option value="">請選擇</option>
+        <option value="飲料">飲料</option>
+        <option value="食品">食品</option>
+        <option value="生活用品">生活用品</option>
+    </select><br>
+
+    <label>商品名稱：</label>
+    <select id="product"></select><br>
+
+    <label>單價：</label>
+    <input type="number" id="price" readonly><br>
+
+    <label>數量：</label>
+    <input type="number" id="quantity" min="1" value="1"><br>
+
+    <label>小計：</label>
+    <input type="number" id="subtotal" readonly><br>
+
+    <label>狀態：</label>
+    <select id="status">
+        <option value="未付款">未付款</option>
+        <option value="已付款">已付款</option>
+        <option value="已完成">已完成</option>
+    </select><br>
+
+    <label>備註：</label>
+    <textarea id="remark"></textarea><br>
+
+    <button type="button" id="submit-btn">送出</button>
+</form>
