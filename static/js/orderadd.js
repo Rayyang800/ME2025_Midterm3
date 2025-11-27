@@ -104,10 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
             category: categorySelect.value,
             product: productSelect.value,
             price: parseFloat(priceInput.value),
-            quantity: parseInt(qtyInput.value),
-            subtotal: parseFloat(subtotalInput.value),
+            amount: parseInt(qtyInput.value),
+            total: parseFloat(subtotalInput.value),
             status: document.getElementById("status").value,
-            remark: document.getElementById("remark").value
+            note: document.getElementById("remark").value
         };
 
         if (payload.quantity <= 0) {

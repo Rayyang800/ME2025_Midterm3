@@ -24,17 +24,17 @@ class Database():
             );
         """)
 
-        # 訂單表
+        # 訂單表（統一使用短欄位）
         cur.execute("""
             CREATE TABLE IF NOT EXISTS order_list (
                 order_id TEXT PRIMARY KEY,
-                product_date TEXT,
+                date TEXT,
                 customer_name TEXT,
-                product_name TEXT,
-                product_amount INTEGER,
-                product_total INTEGER,
-                product_status TEXT,
-                product_note TEXT
+                product TEXT,
+                amount INTEGER,
+                total INTEGER,
+                status TEXT,
+                note TEXT
             );
         """)
 
@@ -68,40 +68,39 @@ class Database():
     def add_order(self, cur, order_data):
         sql = """
             INSERT INTO order_list
-            (order_id, product_date, customer_name, product_name,
-             product_amount, product_total, product_status, product_note)
+            (order_id, date, customer_name, product,
+             amount, total, status, note)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?);
         """
-
         cur.execute(sql, (
             order_data["order_id"],
-            order_data["product_date"],
+            order_data["date"],
             order_data["customer_name"],
-            order_data["product_name"],
-            order_data["product_amount"],
-            order_data["product_total"],
-            order_data["product_status"],
-            order_data["product_note"]
+            order_data["product"],
+            order_data["amount"],
+            order_data["total"],
+            order_data["status"],
+            order_data["note"]
         ))
 
     # 刪除訂單
     def delete_order(self, cur, order_id):
         cur.execute("DELETE FROM order_list WHERE order_id=?", (order_id,))
 
-    # 取得所有訂單（含動態查價格）
+    # 取得所有訂單
     def get_all_orders(self, cur):
         sql = """
             SELECT 
-                o.order_id, o.product_date, o.customer_name,
-                o.product_name,
+                o.order_id, o.date, o.customer_name,
+                o.product,
                 c.price,
-                o.product_amount,
-                o.product_total,
-                o.product_status,
-                o.product_note
+                o.amount,
+                o.total,
+                o.status,
+                o.note
             FROM order_list o
             LEFT JOIN commodity c
-                ON o.product_name = c.product;
+                ON o.product = c.product;
         """
         cur.execute(sql)
         return cur.fetchall()

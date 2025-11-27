@@ -56,13 +56,13 @@ def product():
 
         order_data = {
             "order_id": db.generate_order_id(),
-            "product_date": data.get("date"),
+            "date": data.get("date"),
             "customer_name": data.get("customer_name"),
-            "product_name": data.get("product"),
-            "product_amount": data.get("quantity"),
-            "product_total": data.get("subtotal"),
-            "product_status": data.get("status"),
-            "product_note": data.get("remark")
+            "product": data.get("product"),
+            "amount": data.get("quantity"),
+            "total": data.get("subtotal"),
+            "status": data.get("status"),
+            "note": data.get("remark")
         }
 
         conn, cur = get_cursor()
