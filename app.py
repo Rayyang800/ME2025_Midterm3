@@ -59,10 +59,10 @@ def product():
             "date": data.get("date"),
             "customer_name": data.get("customer_name"),
             "product": data.get("product"),
-            "amount": data.get("quantity"),
-            "total": data.get("subtotal"),
+            "amount": data.get("amount"),
+            "total": data.get("total"),
             "status": data.get("status"),
-            "note": data.get("remark")
+            "note": data.get("note")
         }
 
         conn, cur = get_cursor()

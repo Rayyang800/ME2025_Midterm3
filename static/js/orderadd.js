@@ -96,36 +96,47 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==============================
     //     表單 POST 提交新增訂單
     // ==============================
-    document.getElementById("submit-btn").addEventListener("click", function () {
+document.getElementById("submit-btn").addEventListener("click", function () {
 
-        let payload = {
-            customer_name: document.getElementById("customer").value,
-            date: document.getElementById("date").value,
-            category: categorySelect.value,
-            product: productSelect.value,
-            price: parseFloat(priceInput.value),
-            amount: parseInt(qtyInput.value),
-            total: parseFloat(subtotalInput.value),
-            status: document.getElementById("status").value,
-            note: document.getElementById("remark").value
-        };
+    const customer = document.getElementById("customer").value;
+    const date = document.getElementById("date").value;
+    const product = document.getElementById("product").value;
+    const qty = parseInt(document.getElementById("quantity").value) || 0;
+    const subtotal = parseFloat(document.getElementById("subtotal").value) || 0;
+    const status = document.getElementById("status").value;
+    const note = document.getElementById("remark").value;
 
-        if (payload.quantity <= 0) {
-            alert("數量必須大於 0！");
-            return;
-        }
+    if (qty <= 0) {
+        alert("數量必須大於 0！");
+        return;
+    }
+    if (!customer || !date || !product) {
+        alert("請填寫所有必填欄位！");
+        return;
+    }
 
-        fetch("/product", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-        })
-        .then(() => {
-            alert("新增成功！");
-            close_input_table();
-            location.assign("/");
-        })
-        .catch(err => console.error("新增錯誤：", err));
-    });
+    let payload = {
+        customer_name: customer,
+        date: date,
+        product: product,
+        amount: qty,
+        total: subtotal,
+        status: status,
+        note: note
+    };
+
+    fetch("/product", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+    })
+    .then(() => {
+        alert("新增成功！");
+        close_input_table();
+        location.assign("/");
+    })
+    .catch(err => console.error("新增錯誤：", err));
+});
+
 
 });
