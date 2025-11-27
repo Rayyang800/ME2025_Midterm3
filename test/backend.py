@@ -35,13 +35,13 @@ class TestBackendAPI(unittest.TestCase):
         mock_db.add_order.return_value = True
         
         form_data = {
-            'product-date': '2023-01-01',
+            'date': '2023-01-01',
             'customer-name': 'Client',
-            'product-name': 'Item',
-            'product-amount': '1',
-            'product-total': '100',
-            'product-status': 'Pending',
-            'product-note': 'Note'
+            'product': 'Item',
+            'amount': '1',
+            'total': '100',
+            'status': 'Pending',
+            'note': 'Note'
         }
         
         response = self.app.post('/product', json=form_data, follow_redirects=True)
