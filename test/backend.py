@@ -44,7 +44,7 @@ class TestBackendAPI(unittest.TestCase):
             'product-note': 'Note'
         }
         
-        response = self.app.post('/product', data=form_data, follow_redirects=True)
+        response = self.app.post('/product', json=form_data, follow_redirects=True)
         
         self.assertEqual(response.status_code, 200)
         # 檢查是否呼叫了 add_order 且參數正確轉換了 key (例如 product-date -> product_date)

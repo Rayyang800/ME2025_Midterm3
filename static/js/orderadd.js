@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 productSelect.innerHTML = "";
 
-                data.products.forEach(p => {
+                data.product.forEach(p => {
                     let opt = document.createElement("option");
                     opt.value = p;
                     opt.textContent = p;
