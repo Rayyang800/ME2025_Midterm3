@@ -18,7 +18,7 @@ class TestSalesDB(unittest.TestCase):
         # 在單元測試中我們通常會繞過裝飾器直接測邏輯，或是 Mock BaseDB。
         # 這裡示範直接傳入 self.cur 的情境
         
-        results = self.db.get_product_names_by_category(cur, '主食')
+        results = self.db.get_product_names_by_category('主食')
         products = [r[0] for r in results]
         self.assertIn('咖哩飯', products)
         self.assertIn('蛋包飯', products)
@@ -35,13 +35,13 @@ class TestSalesDB(unittest.TestCase):
     def test_add_and_get_order(self):
         # 測試需求 3 & 5: 新增訂單與取得訂單
         order_data = {
-            'product_date': '2023-12-01',
+            'date': '2023-12-01',
             'customer_name': 'TestUser',
-            'product_name': '咖哩飯',
-            'product_amount': 2,
-            'product_total': 180,
-            'product_status': '未付款',
-            'product_note': 'Test Note'
+            'product': '咖哩飯',
+            'amount': 2,
+            'total': 180,
+            'status': '未付款',
+            'note': 'Test Note'
         }
         
         # Mock generate_order_id 因為它在 BaseDB
