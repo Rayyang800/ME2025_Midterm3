@@ -37,7 +37,7 @@ def product():
 
         if "category" in request.args:
             category = request.args.get("category")
-            products = db.get_product_names_by_category(cur, category)
+            products = db.get_product_names_by_category(category)
             conn.close()
             return jsonify({"product": products})
 
