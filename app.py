@@ -70,8 +70,8 @@ def product():
         conn.commit()
         conn.close()
 
-        # Redirect 回首頁 + 顯示 warning alert
-        return redirect(url_for("index", warning="Order placed successfully"))
+        return jsonify({"message": "新增成功"}), 200
+
 
     # ---------- DELETE ----------
     if request.method == "DELETE":
@@ -85,3 +85,5 @@ def product():
         conn.close()
 
         return jsonify({"message": "Order deleted successfully"}), 200
+if __name__ == "__main__":
+    app.run(debug=True)
