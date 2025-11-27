@@ -39,7 +39,7 @@ def product():
             category = request.args.get("category")
             products = db.get_product_names_by_category(cur, category)
             conn.close()
-            return jsonify({"products": products})
+            return jsonify({"product": products})
 
         if "product" in request.args:
             product = request.args.get("product")
@@ -70,7 +70,8 @@ def product():
         conn.commit()
         conn.close()
 
-        return jsonify({"message": "新增成功"}), 200
+        return redirect(url_for("index", warning="Order placed successfully"))
+
 
 
     # ---------- DELETE ----------
